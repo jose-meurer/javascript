@@ -1,6 +1,6 @@
 /* 
     Falsy values - 0, "", NaN, undedfined, null, false
-    Truth - todo o resto
+    Truthy - todo o resto
 */
 
 if (0 || "") {
