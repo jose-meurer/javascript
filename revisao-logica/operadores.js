@@ -55,3 +55,15 @@ console.log(n1 >= n5 + 1);
 
 console.log(n1 != n5);
 console.log(n1 !== n5, typeof n1, typeof n5); //valores iguais mas tipos diferentes
+
+/*  OPERADORES LÓGICOS
+    AND(&&), OR(||) e NOT(!)
+*/
+
+let idade = 21;
+let paisPresentes = false;
+let comprouTicket = false;
+/* Funciona igual ao calc, o && tem preferencia, colocar os valores a serem calculados primeiro dentro de () */
+let liberado = (idade >= 18 || paisPresentes) && comprouTicket; 
+/* Como paisPresentes é um booleano, nao precisa de paisPresentes === true */
+console.log(`Pode viajar: ${liberado}.`);
