@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tabuada</title>
+  </head>
+  <body>
+    <h1>Funcoes - tabuada</h1>
+
+    <button onclick="mostrarTabuada()">Mostrar Tabuada</button>
+    <button onclick="limparTabuada()">Limpar Tabuada</button>
+    <div id="output"></div>
+
+    <script>
+      const output = document.getElementById("output");
+
+      let msg = "";
+
+      function mostrarTabuada() {
+        let n = parseInt(prompt("Digite um numero: "));
+
+        if (n) {
+          limparTabuada();
+          for (let j = 0; j <= 1000; j++) {
+            msg += `${n} x ${j} = ${n * j}; <br />`;
+          }
+
+          output.innerHTML = msg;
+        } else {
+          output.innerHTML = "Voce digitou um numero invalido!!";
+        }
+      }
+
+      function limparTabuada() {
+        output.innerHTML = ""; /* innerText não interpreta as tags html, apenas mostra em formato de texto */
+      }
+    </script>
+  </body>
+</html>

@@ -32,7 +32,7 @@ function f5() {
 let dia = f5();
 console.log(dia);
 
-function sum(n1 = 0, n2 = 0) {
+function sum(n1 = 0, n2 = 0) { //Se nao passar nenhum valor, o padrao será 0
   //   let _n1 = n1 || 0;
   //   let _n2 = n2 || 0;
   return n1 + n2;
