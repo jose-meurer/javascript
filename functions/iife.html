@@ -13,18 +13,20 @@
 
       ( //Precisa estar entre parenteses
 
-        function(){ //Funcao anonima
+        function(win, doc){ //Funcao anonima
+
+            win.alert("Hello World!");
 
             //Pode ter outra funcao dentro dela
             function foo() {
-                console.log("Hello World!")
+                console.log("Hello World!");
             }
-            foo()
+            foo();
 
         }
          
         )
-        () //Parenteses no final para invocar
+        (window, document); //Parenteses no final para invocar e passar parametros
     </script>
   </body>
 </html>
