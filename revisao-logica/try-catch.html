@@ -8,18 +8,22 @@
   <body>
     <script src="sum.js"></script>
     <script>
-    //   console.log(sum(6, 14));
-    //   alert(sum(3, 5));
-    //   document.write(sum(4, 2));
+      //   console.log(sum(6, 14));
+      //   alert(sum(3, 5));
+      //   document.write(sum(4, 2));
 
-    try{
-        let soma = sum(9, "a");
+      try {
+        // let soma = sum(9, "a");
+        let soma = sum(3, 19);
         console.log(soma);
-    }
-    catch(e) {
-        alert("Ocorreu um erro")
-        alert(e.message);
-    }
+      } catch (e) {
+        window.alert("Ocorreu um erro.");
+        console.log(e.message);
+      } finally {
+        console.log("Fim do bloco try-catch.");
+      }
+
+      console.log("Fim do programa.");
     </script>
   </body>
 </html>
