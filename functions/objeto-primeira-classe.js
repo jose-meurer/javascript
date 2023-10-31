@@ -3,7 +3,7 @@
 function fn(cb) {
   console.log("executar acao de callback");
   console.log(typeof cb);
-  (typeof cb === "function") & cb(); //curto-circuito
+  (typeof cb === "function") && cb(); //curto-circuito
 }
 
 function callback() {
