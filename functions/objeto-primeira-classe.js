@@ -15,7 +15,7 @@ fn(callback);
 const obj = {
   callback: callback,
 };
-obj.callback;
+obj.callback();
 
 function fn2(x1) {
   return function (x2) {

@@ -1,7 +1,7 @@
 (function () {
   "use strict";
 
-  function calcularIMC(altura, peso) {
+  function calcularIMC(altura, peso, cb) {
     if (altura === undefined || peso === undefined) {
       throw Error("Está faltando valores.");
     }
@@ -9,16 +9,22 @@
     if (typeof altura !== "number" || typeof peso !== "number") {
       throw Error("Valores invalidos.");
     }
+
+    let valorCalculado = peso / (altura * altura);
+
+    if(typeof cb === "function") {
+      return cb(valorCalculado);
+    }
     
-    return peso / (altura * altura);
+    return valorCalculado;
   }
 
   function classificarIMC(imc) {
-    if (altura === undefined || peso === undefined) {
+    if (imc === undefined) {
       throw Error("Está faltando valores.");
     }
 
-    if (typeof altura !== "number" || typeof peso !== "number") {
+    if (typeof imc !== "number") {
       throw Error("Valores invalidos.");
     }
 
@@ -40,6 +46,7 @@
   }
 
   console.log(calcularIMC(1.85, 100));
+  console.log("Callback: ", calcularIMC(1.85, 100, classificarIMC));
   console.log(classificarIMC(calcularIMC(1.9, 120)));
   console.log(classificarIMC(15));
 })();
