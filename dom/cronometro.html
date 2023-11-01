@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pr-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronometro</title>
+</head>
+<body>
+    <h1 id="title1">Tempo ainda não definido.</h1>
+
+    <script>
+        function sleep(ms) {
+          return new Promise((resolve) => setTimeout(resolve, ms));
+        }
+
+        function colorRandomRgb(min, max) {
+            max = max || 255;
+            min = min || 0;
+            return Math.random() * (max - min) + min;
+        }
+  
+        let time = window.prompt("Quantos segundos será?");
+
+        time = time || 15;
+
+        const myTitle = document.getElementById("title1");
+
+        async function demo() {
+          for (let i = time; i >= 0; i--) {
+            document.querySelector("h1").textContent = `Tempo: ${i} segundos restantes.`;
+
+            
+            myTitle.style.color = `rgb(${colorRandomRgb()},${colorRandomRgb()},${colorRandomRgb()})`;
+            await sleep(1000);
+          }
+          console.log("Done");
+          window.alert("Tempo esgotado!!!")
+        }
+        demo();
+      </script>
+</body>
+</html>
