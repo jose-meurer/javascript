@@ -17,8 +17,5 @@
 
     const elementDad = document.querySelector(".hero");
     elementDad.insertBefore(topBarElement, elementDad.firstElementChild);
-
-    console.log(topBarElement.title = "teta");
-  
   }
 })();
