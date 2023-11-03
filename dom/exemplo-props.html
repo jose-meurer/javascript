@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Exemplo Props</title>
+
+    <style>
+      input,
+      textarea {
+        display: block;
+        margin-bottom: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1 id="title">Exemplo Props</h1>
+
+      <section class="sectionPrimary" id="sectionPrimary">
+        <h2>Subtitle</h2>
+        <p>
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Aliquam perspiciatis maxime illo, neque recusandae deserunt, saepe nam perferendis odio voluptatem at labore velit! Corrupti quod,
+          tempora nesciunt laudantium sit alias!
+        </p>
+      </section>
+
+      <form action="#">
+        <input type="text" id="txtName" placeholder="name" />
+        <input type="text" id="txtEmail" placeholder="email" maxlength= "12" class="classEmail"/>
+
+        <input type="checkbox" id="contract" style="display: inline" />
+        <label for="contract">Li e aceito o contrato</label>
+        <textarea name="txtContract" id="txtContract" cols="20" rows="6" readonly>Era uma vez...</textarea>
+      </form>
+    </main>
+
+    <script>
+        const txtName = document.getElementById("txtName");
+        const txtEmail = document.getElementById("txtEmail");
+        const labelContract = document.querySelector("label[for='contract']");
+
+
+        txtName.value = "José";
+        txtName.disabled = true;
+        txtName.style.color = "blue";
+
+        txtEmail.readOnly = true;
+
+        let txt = "";
+        txt += " "   + txtName.value;
+        txt += "\n " + labelContract.htmlFor;
+        txt += "\n " + txtEmail.maxLength;
+        txt += "\n " + txtEmail.className;
+
+        const txtContract = document.getElementById("txtContract");
+        txtContract.value = txt;
+
+    </script>
+  </body>
+</html>
