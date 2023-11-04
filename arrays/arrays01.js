@@ -30,6 +30,6 @@ console.log(arr2);
 //Para cada elemento do errei, executa a function;
 const arr3 = arr2.map((x) => {
     return x * x;
-})
+});
 console.log(`--map--`);
 console.log(arr3);
