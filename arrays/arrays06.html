@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Array.from vs Array.of</title>
+  </head>
+  <body>
+    <h1>Array.from vs Array.of</h1>
+
+    <div>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio debitis excepturi possimus necessitatibus, recusandae sint et voluptates quaerat enim qui.</p>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio debitis excepturi possimus necessitatibus, recusandae sint et voluptates quaerat enim qui.</p>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio debitis excepturi possimus necessitatibus, recusandae sint et voluptates quaerat enim qui.</p>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio debitis excepturi possimus necessitatibus, recusandae sint et voluptates quaerat enim qui.</p>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio debitis excepturi possimus necessitatibus, recusandae sint et voluptates quaerat enim qui.</p>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio debitis excepturi possimus necessitatibus, recusandae sint et voluptates quaerat enim qui.</p>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio debitis excepturi possimus necessitatibus, recusandae sint et voluptates quaerat enim qui.</p>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio debitis excepturi possimus necessitatibus, recusandae sint et voluptates quaerat enim qui.</p>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio debitis excepturi possimus necessitatibus, recusandae sint et voluptates quaerat enim qui.</p>
+      <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Odio debitis excepturi possimus necessitatibus, recusandae sint et voluptates quaerat enim qui.</p>
+    </div>
+    <script>
+      /* Array.of vs new Array */
+
+      const arr = new Array(3); //Cria um array com 3 espacos vazios;
+      console.log(arr);
+      const arr2 = Array.of(3); //Cria um array com elemento '3';
+      console.log(arr2);
+
+      /* Array.from() */
+
+      //Me retorna nodeList, parece array mas nao tem todas as funcoes do array
+      const htmlElements = document.querySelectorAll("p");
+
+      // htmlElements.forEach((e, i) => { //isso aqui funciona
+      //     e.textContent = `${++i} - ${e.textContent}`
+      // })
+
+      // htmlElements.map((e, i) => { //isso retorna erro
+      //     e.textContent = `${++i} - ${e.textContent}`
+      // })
+
+      const nodeToArray = Array.from(htmlElements); //Transformou nodeList em new array, e nao apenas referencia
+      nodeToArray.map((e, i) => {
+        //isso aqui funciona
+        e.textContent = `${++i} - ${e.textContent}`;
+      });
+    </script>
+  </body>
+</html>
