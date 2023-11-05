@@ -17,6 +17,6 @@ let isValid = false
 
 isValid && console.log("É valido."); 
 /* Pode funcionar como um if e else */
-isValid || console.log("Não é valido.")
+isValid || console.log("Não é valido.");
 
-isValid | console.log("É valido.");
+isValid || console.log("É valido.");
