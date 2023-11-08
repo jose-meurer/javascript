@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navegar pelo DOM</title>
+  </head>
+  <body>
+    <!-- Teste de comentario no codigo -->
+    <h1>teste DOM</h1>
+
+    <div class="container">
+      <p>Lorem ipsum dolor sit amet.</p>
+      <p>teste <a href="#">link</a> .</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+
+      <h2>Lista</h2>
+      <ul>
+        <li>Item 01</li>
+        <li>
+          Item 02
+          <ul>
+            <li>Item 2.1</li>
+            <li>Item 2.2</li>
+            <li>Item 2.3</li>
+            <li></li>
+          </ul>
+        </li>
+        <li>Item 03</li>
+        <li>Item 04</li>
+        <li>Item <a href="#">link</a></li>
+      </ul>
+    </div>
+
+    <div id="div-01">Here is div-01</div>
+    <div id="div-02">Here is div-02</div>
+
+    <script>
+      /* Exemplo da MDN de nextElementSibling */
+
+      let el = document.getElementById("div-01");
+      console.log(el.nodeName);
+      console.log("Siblings of div-01:");
+      while (el) {
+        console.log(el.nodeName);
+        el = el.nextElementSibling;
+      }
+
+      console.log("------------");
+    </script>
+
+    <script>
+      /* parentElement vs parentNode */
+
+      console.log(document.body);
+      console.log(document.body.parentElement);
+      console.log(document.body.parentNode);
+
+      const html = document.body.parentElement;
+
+      console.log(document.body.parentElement === document.body.parentNode);
+
+      //retorna null, porque document é um nó e nao elemento
+      console.log(html.parentElement);
+      console.log(html.parentNode); //#document
+
+      /* nextElementSibling vs previousSibling */
+
+      const h2 = document.querySelector("h2");
+      console.log(h2.nextSibling); //retornou a quebra de linha \n
+      console.log(h2.nextElementSibling); //retornou o UL
+
+      //elemento anterior
+      const h2PreviousSibling = h2.previousElementSibling;
+      h2.previousElementSibling.style.backgroundColor = "red";
+
+      //proximo elemento
+      const h2NextSibling = h2.nextElementSibling;
+      h2NextSibling.style.backgroundColor = "blue";
+    </script>
+
+    <script>
+      console.log("--------------------");
+      /* 
+            childNodes
+            children
+            firstChild
+            firstElementChild
+            lastChild
+            lastElementChild
+            hasChildNodes()
+        */
+
+      /* childNodes vs children */
+
+      const link = document.querySelector("p:has(a)");
+      const list = document.querySelector("ul ul");
+
+      console.log("link: \n", link);
+      console.log(link.childNodes); //retorna os textos e tag a
+      console.log(link.children); //retorna apenas a tag a
+
+      console.log("list: \n", list);
+      console.log(list.childNodes); //retorna os elementos li com quebra de texto
+      console.log(list.children); //retorna apenas os elementos li
+
+      /* firstChild vs firstElementChild */
+
+      console.log(link.firstChild);
+      console.log(link.firstElementChild);
+
+      /* lastChild vs lastElementChild */
+
+      console.log(link.lastChild);
+      console.log(link.lastElementChild);
+
+      /* hasChildNodes() */
+
+      //verifica se tem algum nó dentro do elemento
+      console.log(list.lastElementChild.hasChildNodes()) 
+
+    </script>
+  </body>
+</html>
