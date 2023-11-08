@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Navegar pelo DOM</title>
+  </head>
+  <body>
+    <!-- Teste de comentario no codigo -->
+    <h1>teste DOM</h1>
+
+    <div class="container">
+      <p>Lorem ipsum dolor sit amet.</p>
+      <p>teste <a href="#">link</a> .</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+
+      <h2>Lista</h2>
+      <ul>
+        <li>Item 01</li>
+        <li>
+          Item 02
+          <ul>
+            <li>Item 2.1</li>
+            <li>Item 2.2</li>
+            <li>Item 2.3</li>
+            <li></li>
+          </ul>
+        </li>
+        <li>Item 03</li>
+        <li>Item 04</li>
+        <li>Item <a href="#">link</a></li>
+      </ul>
+    </div>
+
+    <script>
+      const title = document.createElement("h1");
+
+      const attribute = document.createAttribute("id");
+      attribute.value = "title1";
+      title.setAttributeNode(attribute);
+      //Ambos tem o mesmo efeito, setAttributeNode e setAttribute
+      title.setAttribute("title", "title inserido pelo javascript");
+      title.setAttribute("style", "color: green;");
+
+      const text = document.createTextNode("Elemento criado pelo DOM");
+      title.appendChild(text);
+      //Ambos sao muito parecidos, createTextNode e textContent
+      // title.textContent = "Texto criado pelo textContent";
+
+      // title.appendChild(document.createTextNode("Teste...123"))
+
+      const text1 = document.createTextNode("Elemento criado pelo DOM");
+      title.appendChild(text1);
+
+      console.log(title);
+
+      //appendChild cria um nó/node no final do elemento
+      document.body.appendChild(title);
+    </script>
+  </body>
+</html>
