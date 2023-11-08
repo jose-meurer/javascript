@@ -33,7 +33,7 @@
     </div>
 
     <script>
-      const title = document.createElement("h1");
+      const title = document.createElement("h1"); // Cria um novo elemento h1
 
       const attribute = document.createAttribute("id");
       attribute.value = "title1";
@@ -42,20 +42,28 @@
       title.setAttribute("title", "title inserido pelo javascript");
       title.setAttribute("style", "color: green;");
 
-      const text = document.createTextNode("Elemento criado pelo DOM");
-      title.appendChild(text);
+      const text = document.createTextNode("Elemento criado pelo DOM"); // Cria um novo nó de texto
+      title.appendChild(text); // Anexa o nó de texto ao elemento h1
       //Ambos sao muito parecidos, createTextNode e textContent
       // title.textContent = "Texto criado pelo textContent";
 
       // title.appendChild(document.createTextNode("Teste...123"))
 
-      const text1 = document.createTextNode("Elemento criado pelo DOM");
-      title.appendChild(text1);
-
       console.log(title);
 
       //appendChild cria um nó/node no final do elemento
-      document.body.appendChild(title);
+      // document.body.appendChild(title);
+
+      /* append vs prepend */
+
+      // document.querySelector("ul").prepend(title, "Novo texto com prepend"); //Insere antes do primeiro filho
+      //Ambos aceitam mais de um argumento
+      document.body.append(title); //Insere depois do ultimo filho
+
+      /* append vs appendChild, appendChild é um metodo mais antigo com maior compatibilidade(IE11), aceitando apenas elementos como argumento..., 
+        ...por outro lado temos o append, um metodo mais novo, aceitando qualquer node(eu acho) e aceitando mais de um argumento 
+      
+      */
     </script>
   </body>
 </html>
