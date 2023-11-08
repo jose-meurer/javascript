@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HtmlCollection vs NodeList</title>
+
+    <style>
+      body {
+        margin: 0;
+        background: #aaa;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Minha Lista</h1>
+      <ul id="list">
+        <li class="listItem">Item 01</li>
+        <li class="listItem">Item 02</li>
+        <li class="listItem">Item 03</li>
+        <li class="listItem">Item 04</li>
+        <li class="listItem">Item 05</li>
+      </ul>
+    </div>
+
+    <script>
+      const htmlCollection = document.getElementById("list").getElementsByTagName("li"); //Atualiza a cada modificacao
+      const nodelist = document.querySelectorAll("#list li"); //Estatico
+
+      console.log(htmlCollection); //5
+      console.log(nodelist); //5
+
+      document.getElementById("list").innerHTML += '<li class="listItem">Item 06</li>';
+      
+      console.log(htmlCollection); //6
+      console.log(nodelist); //5
+      
+      document.querySelector("#list").innerHTML += '<li class="listItem">Item 07</li>';
+      
+      console.log(htmlCollection); //7
+      console.log(nodelist); //5
+    </script>
+  </body>
+</html>
