@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>remove DOM</title>
+
+    <style></style>
+  </head>
+  <body>
+    <!-- Teste de comentario no codigo -->
+    <h1>teste DOM</h1>
+
+    <div class="container">
+      <p>Paragrafo 1</p>
+      <p>Paragrafo 2</p>
+      <p>Paragrafo 3</p>
+      <p>Paragrafo 4</p>
+
+      <h2>Minha Lista</h2>
+      <ul>
+        <li>Item 01</li>
+        <li>Item 02
+            <ul>
+                <li>Item 2.1</li>
+                <li>Item 2.2</li>
+                <li>Item 2.3</li>
+            </ul>
+        </li>
+        <li>Item 03</li>
+        <li>Item 04</li>
+      </ul>
+    </div>
+
+    <script>
+
+        /* Remove */
+        const list = document.querySelector("ul");
+        const subList = list.querySelector("ul")
+        subList.remove()
+
+        /* removeChild */
+        list.parentElement.removeChild(list); //Funciona no IE11
+
+        /* replaceChild */
+        const parent = document.body;
+        const newChild = document.querySelector("h2").cloneNode(true);
+        const oldChild = document.querySelector("h1");
+        parent.replaceChild(newChild, oldChild);
+
+    </script>
+  </body>
+</html>
