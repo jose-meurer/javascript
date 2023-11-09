@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>insert DOM</title>
+
+    <style>
+      .container {
+        background-color: #aaa;
+        padding: 15px;
+      }
+
+      .container p {
+        border: 1px solid red;
+        padding: 10px;
+        margin: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Teste de comentario no codigo -->
+    <h1>teste DOM</h1>
+
+    <!-- beforebegin -->
+    <div class="container">
+      <!-- afterbegin -->
+      <p>Paragrafo 1</p>
+      <p>Paragrafo 2</p>
+      <p>Paragrafo 3</p>
+      <p>Paragrafo 4</p>
+      <!-- beforeend -->
+    </div>
+    <!-- afterend -->
+
+    <script>
+      /* insertAdacentHTML, insertAdjacentElement, insertAdjacentText */
+
+      const container2 = document.querySelector(".container");
+
+      /*    beforebegin,
+            afterbegin,
+            beforeend,
+            afterend
+        */
+      container2.insertAdjacentHTML("beforebegin", "<h3 style='color: red;'>TEXTO INSERIDO COM <b>beforebegin</b></h3>");
+      container2.insertAdjacentHTML("afterbegin", "<h3 style='color: blue;'>TEXTO INSERIDO COM <b>afterbegin</b></h3>");
+      container2.insertAdjacentHTML("beforeend", "<h3 style='color: aqua;'>TEXTO INSERIDO COM <b>beforeend</b></h3>");
+      container2.insertAdjacentHTML("afterend", "<h3 style='color: green;'>TEXTO INSERIDO COM <b>beforeend</b></h3>");
+
+      container2.insertAdjacentText("beforebegin", "Texto inserido com insertAdjacentText que nao interpreta tags <h1>HTML</h1>");
+
+        const element = document.createElement("h4");
+        element.textContent = "Texto inserido com insertAdjacentElement <b>Negrito</b>"
+
+      container2.insertAdjacentElement("beforeend", element )
+    </script>
+  </body>
+</html>

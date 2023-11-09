@@ -65,7 +65,7 @@
       
       */
       const title2 = document.createElement("h2");
-      title2.textContent = "titulo 2"
+      title2.textContent = "titulo 2";
 
       const list = document.querySelector("ul");
       const container = document.querySelector(".container");
@@ -76,14 +76,22 @@
       let subList = list.querySelector("ul");
 
       //Clona o Node recebendo 1 argumento booleano, true clona com os nodes filhos, false/undefined apenas o node selecionado
-      subList = subList.cloneNode(true); 
+      subList = subList.cloneNode(true);
 
       const h2 = document.querySelector("h2");
 
       container.insertBefore(subList, h2.nextElementSibling);
 
+      // const segundoParagrafo = container.firstElementChild.nextElementSibling; //recupera o primeiro + next filho do container
+      const segundoParagrafo = container.querySelectorAll("p")[1];
 
+      console.log(segundoParagrafo);
 
+      segundoParagrafo.before("Texto inserido com before")
+      
+      const span = document.createElement("span");
+      span.textContent = "span criada pelo JS";
+      segundoParagrafo.after("Texto inserido com after","  ----  " , span)//Aceita texto e node
     </script>
   </body>
 </html>
