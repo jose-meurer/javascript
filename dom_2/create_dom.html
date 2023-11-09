@@ -64,6 +64,26 @@
         ...por outro lado temos o append, um metodo mais novo, aceitando qualquer node(eu acho) e aceitando mais de um argumento 
       
       */
+      const title2 = document.createElement("h2");
+      title2.textContent = "titulo 2"
+
+      const list = document.querySelector("ul");
+      const container = document.querySelector(".container");
+
+      container.insertBefore(title2, list);
+      container.insertBefore(title2, container.firstChild); //Consigo ter o mesmo efeito do prepend e funcionar no IE11
+
+      let subList = list.querySelector("ul");
+
+      //Clona o Node recebendo 1 argumento booleano, true clona com os nodes filhos, false/undefined apenas o node selecionado
+      subList = subList.cloneNode(true); 
+
+      const h2 = document.querySelector("h2");
+
+      container.insertBefore(subList, h2.nextElementSibling);
+
+
+
     </script>
   </body>
 </html>
