@@ -6,12 +6,13 @@
     <title>Eventos Javascript</title>
   </head>
   <body>
-    <h1>Eventos</h1>
-    <button id="btn1">Botão 1</button>
-    <button id="btn2">Botão 2</button>
-    <button id="btn3">Botão 3</button>
-    <button id="btn4">Botão 4</button>
-
+    <div class="container">
+      <h1>Eventos</h1>
+      <button id="btn1">Botão 1</button>
+      <button id="btn2">Botão 2</button>
+      <button id="btn3">Botão 3</button>
+      <button id="btn4">Botão 4</button>
+    </div>
     <script>
       const btn1 = document.getElementById("btn1");
       const btn2 = document.getElementById("btn2");
@@ -19,22 +20,42 @@
       const btn4 = document.getElementById("btn4");
 
       /* DOM LEVEL 0, Event handling  */
+      /* DOM level 0 nao aceita mais de um evento no mesmo elemento */
 
       btn1.onclick = () => window.alert("Teste onClick");
 
-      function click () {
-        console.log("Teste passando uma funcao no onClick")
-      };
-      
+      function click() {
+        console.log("Teste passando uma funcao no onClick");
+      }
+
       //Passar sem os (), pois estou passando uma function e nao executando ela
       btn1.onclick = click;
-      /* DOM level 0 nao aceita mais de um evento no mesmo elemento */
 
       /* DOM LEVEL 2 */
 
       btn2.addEventListener("click", click);
       btn2.addEventListener("click", () => window.alert("Teste onClick"));
 
+      /* PROPAGACAO DE FASE */
+
+      /* Padrao da propagacao é false */
+      btn3.addEventListener("click", () => console.log("Clicou no botão 3."), false);
+      document.querySelector(".container").addEventListener("click", () => console.log("Propagação div container"), false);
+      document.addEventListener("click", () => console.log("Propagação document"), false);
+      /* btn3 > container > document | false = fase de bolha | do elemento clicado até o document */
+
+      btn3.addEventListener("click", () => console.log("-------------\n", "Clicou no botão 3."), true);
+      document.querySelector(".container").addEventListener("click", () => console.log("Propagação div container"), true);
+      document.addEventListener("click", () => console.log("Propagação document"), true);
+      /* document > container > bt3 | true = fase de captura | do document até o element*/
+
+      btn4.addEventListener("click", () => console.log("click botão 4"));
+      document.querySelector(".container").addEventListener("click", (event,t1, t2 ,t3) => {
+        console.log(event);
+        event.stopPropagation(); /* Paro a propação do click || Nao vai chegar nos elementos seguintes */
+        console.log("Propagação até div container");
+      });
+      document.addEventListener("click", () => console.log("Propagação até o document"));
     </script>
   </body>
 </html>
