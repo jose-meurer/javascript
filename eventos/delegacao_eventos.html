@@ -9,6 +9,10 @@
       .container {
         background-color: red;
       }
+
+      .container2 {
+        background-color: blue;
+      }
     </style>
   </head>
   <body>
@@ -24,6 +28,16 @@
       </ul>
     </div>
 
+    <div class="container2">
+      <ul class="list2">
+        <li class="listItem"><button>Botão 1</button></li>
+        <li class="listItem"><button>Botão 2</button></li>
+        <li class="listItem"><button>Botão 3</button></li>
+        <li class="listItem"><button>Botão 4</button></li>
+        <li class="listItem"><button>Botão 5</button></li>
+      </ul>
+    </div>
+
     <script>
       const container = document.querySelector(".container");
       const btns = document.querySelectorAll(".container button");
@@ -31,7 +45,7 @@
       /* Solucao ruim, performace comprometida caso muitos elementos */
       Array.from(btns).forEach((btn) => {
         btn.addEventListener("click", (event) => {
-        //   event.stopPropagation();
+          //   event.stopPropagation();
           console.log(event.target);
         });
       });
@@ -40,6 +54,22 @@
       container.addEventListener("click", (e) => {
         e.stopPropagation();
         e.target.nodeName === "BUTTON" && console.log(e);
+      });
+
+      /* target vs currentTarget vs this */
+
+      document.addEventListener("click", function (e) {
+        console.log("Click document --target \n", e.target);
+        console.log("Click document --currentTarget \n", e.currentTarget);
+        console.log("Click document --this \n", this);
+      });
+
+      const container2 = document.querySelector(".container2");
+
+      container2.addEventListener("click", function (e) {
+        console.log("Click container2 --target \n", e.target);
+        console.log("Click container2 --currentTarget \n", e.currentTarget);
+        console.log("Click container2 --this \n", this);
       });
     </script>
   </body>
