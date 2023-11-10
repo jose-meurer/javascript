@@ -57,6 +57,9 @@
       });
 
       /* target vs currentTarget vs this */
+      /* target = Quem disparou o evento
+        currentTarget = Elemento onde o listener está atrelado
+      */
 
       document.addEventListener("click", function (e) {
         console.log("Click document --target \n", e.target);
