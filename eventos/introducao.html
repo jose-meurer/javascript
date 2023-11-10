@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eventos Javascript</title>
+  </head>
+  <body>
+    <h1>Eventos</h1>
+    <button id="btn1">Botão 1</button>
+    <button id="btn2">Botão 2</button>
+    <button id="btn3">Botão 3</button>
+    <button id="btn4">Botão 4</button>
+
+    <script>
+      const btn1 = document.getElementById("btn1");
+      const btn2 = document.getElementById("btn2");
+      const btn3 = document.getElementById("btn3");
+      const btn4 = document.getElementById("btn4");
+
+      /* DOM LEVEL 0, Event handling  */
+
+      btn1.onclick = () => window.alert("Teste onClick");
+
+      function click () {
+        console.log("Teste passando uma funcao no onClick")
+      };
+      
+      //Passar sem os (), pois estou passando uma function e nao executando ela
+      btn1.onclick = click;
+      /* DOM level 0 nao aceita mais de um evento no mesmo elemento */
+
+      /* DOM LEVEL 2 */
+
+      btn2.addEventListener("click", click);
+      btn2.addEventListener("click", () => window.alert("Teste onClick"));
+
+    </script>
+  </body>
+</html>
