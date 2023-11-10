@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Delegacao de eventos</title>
+
+    <style>
+      .container {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Delegacao de eventos</h1>
+
+    <div class="container">
+      <ul class="list">
+        <li class="listItem"><button>Botão 1</button></li>
+        <li class="listItem"><button>Botão 2</button></li>
+        <li class="listItem"><button>Botão 3</button></li>
+        <li class="listItem"><button>Botão 4</button></li>
+        <li class="listItem"><button>Botão 5</button></li>
+      </ul>
+    </div>
+
+    <script>
+      const container = document.querySelector(".container");
+      const btns = document.querySelectorAll(".container button");
+
+      /* Solucao ruim, performace comprometida caso muitos elementos */
+      Array.from(btns).forEach((btn) => {
+        btn.addEventListener("click", (event) => {
+        //   event.stopPropagation();
+          console.log(event.target);
+        });
+      });
+
+      /* Unico listener ouve a lista toda, performace boa */
+      container.addEventListener("click", (e) => {
+        e.stopPropagation();
+        e.target.nodeName === "BUTTON" && console.log(e);
+      });
+    </script>
+  </body>
+</html>
