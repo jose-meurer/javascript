@@ -120,6 +120,16 @@ textarea {
   color: #652f2f;
 }
 
+#feedbackMessage button:active {
+  color: hsl(0, 36%, 39%);
+}
+
+#feedbackMessage button:focus{
+  outline: 2px solid black;
+  outline-offset: -2px;
+  border-radius: 6px;
+}
+
 #feedbackMessage.show {
   transform: translateY(0px);
 }
