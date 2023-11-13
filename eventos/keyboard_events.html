@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eventos de keyboard</title>
+</head>
+<body>
+    <textarea name="msg" id="msg" cols="30" rows="10"></textarea>
+
+    <script>
+        const msg = document.getElementById("msg");
+
+        //INPUT melhor maneira para receber dados, pois captura de todas as formas, teclando, colando, etc...
+
+        // msg.addEventListener("keypress", keypress);
+        // msg.addEventListener("keyup", keyup);
+        // msg.addEventListener("keydown", keydown);
+        msg.addEventListener("keypress", (e) => {
+            console.log(e);
+
+            if(e.keyCode === 65 && e.ctrlKey === true) {
+                alert("Ctrl + A acionado.")
+            }
+
+            //Cada tipo de evento tem seu keyCode, keypress keycode do A = 1, e keyUp keycode do A = 65
+
+            if(e.keyCode === 1 && e.ctrlKey === true) {
+                alert("Ctrl + A acionado.")
+            }
+        })
+
+        function keypress (e) { //captura apenas valores alfanumericos, nao lendo ctrl, shift...
+            console.log("keypress: ", this.value);
+        }
+
+        function keyup (e) { //retorna o valor do value atualizado, os outros apenas o que já tinha no value
+            console.log("keyup: ", this.value);
+        }
+
+        function keydown (e) {
+            console.log("keydown: ", this.value);
+        }
+
+
+    </script>
+</body>
+</html>
