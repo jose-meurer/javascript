@@ -44,7 +44,7 @@
   }
 
   //mostra as task no dom
-  function renderTasks() {
+  function renderTasks() { //problema desempenho muitos elementos
     ul.innerHTML = "";
     arrTasks.forEach((taskObj) => {
       ul.appendChild(generateLiTask(taskObj));
@@ -54,11 +54,29 @@
   //Cria uma nova li e retorna
   function generateLiTask(obj) {
     const li = document.createElement("li");
-    li.setAttribute("class", "todo-item");
     const p = document.createElement("p");
-    p.setAttribute("class", "task-name");
+    const checkButton = document.createElement("button");
+    const showCheck = document.createElement("i");
+    const editButton = document.createElement("i");
+    const deleteButton = document.createElement("i");
+    
+    li.classList.add("todo-item");
+
+    checkButton.classList.add("button-check");
+    showCheck.className = "fas fa-check displayNone"; //className pode passar em uma unica string
+    checkButton.appendChild(showCheck);
+    li.prepend(checkButton);
+    
+    
+    p.classList.add("task-name");
     p.textContent = obj.name;
     li.appendChild(p);
+
+    editButton.classList.add("fas", "fa-edit");
+    li.appendChild(editButton);
+
+    deleteButton.classList.add("fas", "fa-trash-alt"); //classList precisa separar as classes
+    li.appendChild(deleteButton)
 
     addEventLi(li);
 

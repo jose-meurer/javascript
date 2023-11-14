@@ -16,7 +16,7 @@
 
 
 
-
+  
   //   btn.addEventListener("click", (e) => {
   //     if (!txtTitulo.value) {
   //       alert("Preencha todos os campos.");
@@ -27,7 +27,6 @@
 
 
 
-  
 
   /* feedbackMessage */
 
@@ -37,6 +36,7 @@
   //Mostra mensagem de erro
   function showErrorMessage(msg, cb) {
     // alert(msg);
+
     //Nao é uma boa pratica usar essa abordagem, pois mata as classes existentes no elemento
     // feedbackMessage.setAttribute("class", "show");
 
