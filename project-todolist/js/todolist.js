@@ -58,6 +58,7 @@
     const checkButton = document.createElement("button");
     const showCheck = document.createElement("i");
     const editButton = document.createElement("i");
+    const containerEdit = generateEditContainerTask();
     const deleteButton = document.createElement("i");
     
     li.classList.add("todo-item");
@@ -67,7 +68,6 @@
     checkButton.appendChild(showCheck);
     li.prepend(checkButton);
     
-    
     p.classList.add("task-name");
     p.textContent = obj.name;
     li.appendChild(p);
@@ -75,12 +75,39 @@
     editButton.classList.add("fas", "fa-edit");
     li.appendChild(editButton);
 
+    li.appendChild(containerEdit);
+
     deleteButton.classList.add("fas", "fa-trash-alt"); //classList precisa separar as classes
     li.appendChild(deleteButton)
 
     addEventLi(li);
 
     return li;
+  }
+
+  //Cria a caixa flutuante de editar a task
+  function generateEditContainerTask() {
+    const containerEdit = document.createElement("div")
+    const inputEdit = document.createElement("input");
+    const buttonEdit = document.createElement("button");
+    const buttonCancel = document.createElement("button");
+
+
+    containerEdit.classList.add("editContainer");
+
+    inputEdit.type = "text";
+    inputEdit.classList.add("editInput");
+    containerEdit.appendChild(inputEdit);
+
+    buttonEdit.classList.add("editButton");
+    buttonEdit.textContent = "Edit";
+    containerEdit.appendChild(buttonEdit);
+
+    buttonCancel.classList.add("cancelButton");
+    buttonCancel.textContent = "Cancel";
+    containerEdit.appendChild(buttonCancel);
+
+    return containerEdit;
   }
 
   //Adiciona evento de click nas li
