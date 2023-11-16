@@ -87,11 +87,15 @@
 
       console.log(segundoParagrafo);
 
-      segundoParagrafo.before("Texto inserido com before")
-      
+      segundoParagrafo.before("Texto inserido com before");
+
+      const h3 = document.createElement("h3");
+      h3.textContent = "Texto inserido com after com a tag <h3>.</h3>";
+      segundoParagrafo.after(h3);
+
       const span = document.createElement("span");
       span.textContent = "span criada pelo JS";
-      segundoParagrafo.after("Texto inserido com after","  ----  " , span)//Aceita texto e node
+      segundoParagrafo.after("Texto inserido com after", "  ----  ", span); //Aceita texto e node
     </script>
   </body>
 </html>
