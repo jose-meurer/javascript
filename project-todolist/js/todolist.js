@@ -142,7 +142,15 @@
         [...ul.querySelectorAll("[data-action = 'editContainer']")].forEach((x) => {
           x.removeAttribute("style");
         });
+        const editInputField = editContainer.querySelector(".editInput");
+        editInputField.value = arrTasks[currentLiIndex].name;
+
         editContainer.style.display = "flex";
+      },
+      containerSaveButton: () => {
+        const val = currentLi.querySelector(".editInput").value;
+        arrTasks[currentLiIndex].name = val;
+        renderTasks();
       },
       deleteButton: () => {
         arrTasks = arrTasks.filter((x) => {
