@@ -3,7 +3,7 @@
 
   /* Armazenar o dom em variaveis */
 
-  const itemInput = document.getElementById("item-input");
+  const itemInput = document.querySelector("#item-input");
   const todoAddForm = document.getElementById("todo-add");
   const ul = document.getElementById("todo-list");
   const lis = ul.getElementsByTagName("li");
@@ -18,7 +18,7 @@
     {
       name: "task 2",
       createAt: Date.now(),
-      completed: false,
+      completed: true,
     },
   ];
 
@@ -26,11 +26,9 @@
   todoAddForm.addEventListener("submit", (e) => {
     e.preventDefault();
 
-    if (!itemInput.value) {
-      alert("Mensagem Vazia"); //Melhorar
+    if (emptyMsgFeedback(itemInput.value)) {
       return;
     }
-
     addTask(itemInput.value);
     renderTasks();
 
@@ -41,8 +39,6 @@
   ul.addEventListener("click", eventUl);
 
   renderTasks();
-
-
 
   //Adiciona uma nova task no array
   function addTask(task) {
@@ -76,7 +72,8 @@
 
     checkButton.classList.add("button-check");
     checkButton.setAttribute("data-action", "checkButton");
-    showCheck.className = "fas fa-check displayNone"; //className pode passar em uma unica string
+    showCheck.className = `fas fa-check ${obj.completed ? "" : "displayNone"}`; //className pode passar em uma unica string
+    showCheck.setAttribute("data-action", "checkButton");
     checkButton.appendChild(showCheck);
     li.prepend(checkButton);
 
@@ -109,6 +106,7 @@
 
     inputEdit.type = "text";
     inputEdit.classList.add("editInput");
+    inputEdit.setAttribute("name", "editInput");
     containerEdit.appendChild(inputEdit);
 
     containerSaveButton.classList.add("editButton");
@@ -124,6 +122,13 @@
     return containerEdit;
   }
 
+  function emptyMsgFeedback(value) {
+    if (!value.trim()) {
+      alert("Não pode inserir uma tarefa sem nome");
+      return true;
+    }
+  }
+
   //Eventos de click da ul
   function eventUl(e) {
     const dataAction = e.target.getAttribute("data-action");
@@ -136,21 +141,29 @@
 
     const currentLiIndex = Array.from(lis).indexOf(currentLi);
 
+    const editInput = currentLi.querySelector(".editInput");
+    const editContainer = currentLi.querySelector("[data-action = 'editContainer']");
     const actions = {
+      checkButton: () => {
+        arrTasks[currentLiIndex].completed = !arrTasks[currentLiIndex].completed;
+        renderTasks();
+      },
       editButton: () => {
-        const editContainer = currentLi.querySelector("[data-action = 'editContainer']");
-        [...ul.querySelectorAll("[data-action = 'editContainer']")].forEach((x) => {
-          x.removeAttribute("style");
+        [...ul.querySelectorAll("[data-action = 'editContainer']")].forEach((container) => {
+          container.removeAttribute("style");
         });
-        const editInputField = editContainer.querySelector(".editInput");
-        editInputField.value = arrTasks[currentLiIndex].name;
-
+        editInput.value = arrTasks[currentLiIndex].name;
         editContainer.style.display = "flex";
       },
       containerSaveButton: () => {
-        const val = currentLi.querySelector(".editInput").value;
-        arrTasks[currentLiIndex].name = val;
+        if (emptyMsgFeedback(editInput.value)) {
+          return;
+        }
+        arrTasks[currentLiIndex].name = editInput.value;
         renderTasks();
+      },
+      containerCancelButton: () => {
+        editContainer.removeAttribute("style");
       },
       deleteButton: () => {
         arrTasks = arrTasks.filter((x) => {
@@ -161,7 +174,6 @@
         renderTasks(); //é mais custoso, porem menor chance de dessincronização
       },
     };
-
 
     actions[dataAction] && actions[dataAction]();
   }
