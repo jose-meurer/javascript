@@ -9,18 +9,7 @@
   const lis = ul.getElementsByTagName("li");
 
   //Array de objs de task
-  let arrTasks = [
-    {
-      name: "task 1",
-      createAt: Date.now(),
-      completed: false,
-    },
-    {
-      name: "task 2",
-      createAt: Date.now(),
-      completed: true,
-    },
-  ];
+  let arrTasks = getSavedData();
 
   //evento de submit da task
   todoAddForm.addEventListener("submit", (e) => {
@@ -31,6 +20,7 @@
     }
     addTask(itemInput.value);
     renderTasks();
+    setNewData();
 
     itemInput.value = "";
     itemInput.focus();
@@ -39,6 +29,34 @@
   ul.addEventListener("click", eventUl);
 
   renderTasks();
+
+  //recupera tasks do localStorage
+  function getSavedData() {
+    let tasksData = localStorage.getItem("tasks");
+    tasksData = JSON.parse(tasksData);
+
+    if (!tasksData || !tasksData.length) {
+      return [
+        {
+          name: "Tarefa 1",
+          createAt: Date.now(),
+          completed: false,
+        },
+        {
+          name: "Tarefa 2",
+          createAt: Date.now(),
+          completed: true,
+        },
+      ];
+    }
+
+    return tasksData;
+  }
+
+  //salva a array atualizada no localStorage
+  function setNewData() {
+    localStorage.setItem("tasks", JSON.stringify(arrTasks));
+  }
 
   //Adiciona uma nova task no array
   function addTask(task) {
@@ -147,6 +165,7 @@
       checkButton: () => {
         arrTasks[currentLiIndex].completed = !arrTasks[currentLiIndex].completed;
         renderTasks();
+        setNewData();
       },
       editButton: () => {
         [...ul.querySelectorAll("[data-action = 'editContainer']")].forEach((container) => {
@@ -161,6 +180,7 @@
         }
         arrTasks[currentLiIndex].name = editInput.value;
         renderTasks();
+        setNewData();
       },
       containerCancelButton: () => {
         editContainer.removeAttribute("style");
@@ -172,6 +192,7 @@
           }
         });
         renderTasks(); //é mais custoso, porem menor chance de dessincronização
+        setNewData();
       },
     };
 
