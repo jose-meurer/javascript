@@ -1,8 +1,6 @@
 ; (function () {
     "use strict"
 
-
-
 	function Task(name, completed, createdAt, updatedAt){
 		// crie uma funcao construtora chamada Task. 
         // essa funcao recebe por parametro obrigatório o nome da tarefa
@@ -13,6 +11,51 @@
         //  - createdAt - timestamp - opcional, timestamp atual é o valor default) 
         //  - updatedAt - timestamp - opcional, null é o valor default
         // o objeto retornado por essa funcao deve ter um método chamado toggleDone, que deve inverter o boolean completed
+
+        emptyMessage(name);
+
+        let _name = name;
+        let _createdAt = createdAt || Date.now();
+        let _updatedAt = updatedAt || null;
+        let _completed = completed || false;
+
+        this.changeName = function (name) {
+            emptyMessage(name);
+
+            _name = name;
+            update();
+        }
+        this.getName = function () {
+            return _name;
+        }
+
+        this.getCreatedAt = function() {
+            return _createdAt;
+        }
+
+        function update() {
+            _updatedAt = Date.now();
+        }
+
+        this.getUpdatedAt = function() {
+            return _updatedAt;
+        }
+
+        this.getCompleted = function() {
+            return _completed;
+        }
+
+        this.toggleDone = function () {
+            _completed = !_completed;
+            update();
+        }
+
+        function emptyMessage(obj) {
+            if(!obj.trim()) {
+                window.alert("Nome da tarefa não pode ser vazia");
+                throw new Error("Nome da tarefa não pode ser vazia");
+            }
+        }
 	}
 
 	let arrTasks = [
@@ -35,12 +78,11 @@
 		}
 	]
 
-
     // a partir de um array de objetos literais, crie um array contendo instancias de Tasks. 
     // Essa array deve chamar arrInstancesTasks
-	// const arrInstancesTasks = DESCOMENTE ESSA LINHA E RESOLVA O ENUNCIADO
-
-
+	const arrInstancesTasks = arrTasks.map(task => {
+        return new Task(task.name, task.completed, task.createdAt, task.updatedAt);
+    })
 
     //ARMAZENAR O DOM EM VARIAVEIS
     const itemInput = document.getElementById("item-input")
@@ -48,9 +90,7 @@
     const ul = document.getElementById("todo-list")
     const lis = ul.getElementsByTagName("li")
 
-
     function generateLiTask(obj) {
-
         const li = document.createElement("li")
         const p = document.createElement("p")
         const checkButton = document.createElement("button")
@@ -61,26 +101,25 @@
 
         checkButton.className = "button-check"
         checkButton.innerHTML = `
-            <i class="fas fa-check ${obj.completed ? "" : "displayNone"}" data-action="checkButton"></i>`
+            <i class="fas fa-check ${obj.getCompleted() ? "" : "displayNone"}" data-action="checkButton"></i>`
         checkButton.setAttribute("data-action", "checkButton")
 
         li.appendChild(checkButton)
 
         p.className = "task-name"
-        p.textContent = obj.name
+        p.textContent = obj.getName();
         li.appendChild(p)
 
         editButton.className = "fas fa-edit"
         editButton.setAttribute("data-action", "editButton")
         li.appendChild(editButton)
 
-
         const containerEdit = document.createElement("div")
         containerEdit.className = "editContainer"
         const inputEdit = document.createElement("input")
         inputEdit.setAttribute("type", "text")
         inputEdit.className = "editInput"
-        inputEdit.value = obj.name
+        inputEdit.value = obj.getName();
 
         containerEdit.appendChild(inputEdit)
         const containerEditButton = document.createElement("button")
@@ -95,8 +134,6 @@
         containerEdit.appendChild(containerCancelButton)
 
         li.appendChild(containerEdit)
-
-
 
         deleteButton.className = "fas fa-trash-alt"
         deleteButton.setAttribute("data-action", "deleteButton")
@@ -114,8 +151,8 @@
 
     function addTask(task) {
         // adicione uma nova instancia de Task
-        renderTasks()
-
+        arrInstancesTasks.push(new Task(task));
+        renderTasks();
     }
 
     function clickedUl(e) {
@@ -136,10 +173,10 @@
                 [...ul.querySelectorAll(".editContainer")].forEach(container => {
                     container.removeAttribute("style")
                 });
-
+            
                 editContainer.style.display = "flex";
 
-
+                editContainer.querySelector(".editInput").focus();
             },
             deleteButton: function () {
                 arrInstancesTasks.splice(currentLiIndex, 1)
@@ -148,24 +185,29 @@
             },
             containerEditButton: function () {
                 const val = currentLi.querySelector(".editInput").value
-                arrInstancesTasks[currentLiIndex].name = val
+                arrInstancesTasks[currentLiIndex].changeName(val)
                 renderTasks()
             },
             containerCancelButton: function () {
                 currentLi.querySelector(".editContainer").removeAttribute("style")
-                currentLi.querySelector(".editInput").value = arrInstancesTasks[currentLiIndex].name
+                // currentLi.querySelector(".editInput").value = arrInstancesTasks[currentLiIndex].getName();
             },
             checkButton: function () {
 
                 // DEVE USAR O MÉTODO toggleDone do objeto correto
-
+                arrInstancesTasks[currentLiIndex].toggleDone();
 	            renderTasks()
             }
         }
-
+        
         if (actions[dataAction]) {
             actions[dataAction]()
         }
+
+        if([...lis].indexOf(currentLi) !== -1){
+            currentLi.querySelector(".editInput").value = arrInstancesTasks[currentLiIndex].getName();
+        }
+        
     }
 
     todoAddForm.addEventListener("submit", function (e) {
