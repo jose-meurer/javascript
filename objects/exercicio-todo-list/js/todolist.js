@@ -50,6 +50,10 @@
             update();
         }
 
+        this.saveData = function () {
+            return {name: _name, completed : _completed, createdAt : _createdAt, updatedAt : _updatedAt};
+        }
+
         function emptyMessage(obj) {
             if(!obj.trim()) {
                 window.alert("Nome da tarefa não pode ser vazia");
@@ -58,25 +62,36 @@
         }
 	}
 
-	let arrTasks = [
-		{
-			name: "task 1",
-			completed: true,
-			createdAt: 1592667375012,
-			updatedAt: null
-		},
-		{
-			name: "task 2",
-			createdAt: 1581667345723,
-			updatedAt: 1592667325018
-		},
-		{
-			name: "task 3",
-			completed: true,
-			createdAt: 1592667355018,
-			updatedAt: 1593677457010
-		}
-	]
+	let arrTasks = getSavedLocalStorage();
+
+    function getSavedLocalStorage() {
+        let tasks = localStorage.getItem("tasks")
+        tasks = JSON.parse(tasks);
+        return tasks && tasks.length ? tasks : [
+            {
+                name: "Tarefa 1",
+                createAt: Date.now(),
+                completed: false,
+            },
+            {
+                name: "Tarefa 2",
+                createAt: Date.now(),
+                completed: true,
+            },
+            {
+                name: "Tarefa 3",
+                createAt: Date.now(),
+                completed: false,
+            }
+        ]
+    }
+
+    function setSaveLocalStorage() {
+        const arrStorage = arrInstancesTasks.map(task => {
+            return task.saveData();
+        })
+        localStorage.setItem("tasks", JSON.stringify(arrStorage));
+    }
 
     // a partir de um array de objetos literais, crie um array contendo instancias de Tasks. 
     // Essa array deve chamar arrInstancesTasks
@@ -180,13 +195,15 @@
             },
             deleteButton: function () {
                 arrInstancesTasks.splice(currentLiIndex, 1)
-                renderTasks()
+                renderTasks();
+                setSaveLocalStorage();
 
             },
             containerEditButton: function () {
                 const val = currentLi.querySelector(".editInput").value
                 arrInstancesTasks[currentLiIndex].changeName(val)
                 renderTasks()
+                setSaveLocalStorage();
             },
             containerCancelButton: function () {
                 currentLi.querySelector(".editContainer").removeAttribute("style")
@@ -196,7 +213,8 @@
 
                 // DEVE USAR O MÉTODO toggleDone do objeto correto
                 arrInstancesTasks[currentLiIndex].toggleDone();
-	            renderTasks()
+	            renderTasks();
+                setSaveLocalStorage();
             }
         }
         
@@ -215,6 +233,7 @@
         console.log(itemInput.value)
         addTask(itemInput.value)
         renderTasks()
+        setSaveLocalStorage();
 
         itemInput.value = ""
         itemInput.focus()
@@ -224,4 +243,5 @@
 
     renderTasks()
 
+    setSaveLocalStorage();
 })();
