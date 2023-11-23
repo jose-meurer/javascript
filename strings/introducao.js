@@ -6,7 +6,7 @@
     valueOf(),      toString(),
     trim(),         trimEnd(),      trimStart(),
     padStart(),     padEnd(),
-    startsWith(),   endsWituh(),
+    startsWith(),   endsWith(),
     charAt(),       charCodeAt(),   length
 */
 
@@ -94,3 +94,25 @@ function mascararTelefone(numero) {
 
 console.log(mascararTelefone(tel));
 console.log(mascararTelefone(tel2));
+
+
+
+/* startsWith, endsWituh */
+
+str = "Amanha é domingo"
+
+console.log(str.startsWith("Amanha"));
+console.log(str.startsWith("nha", 3)); //Comeca com 'nha' a partir do index 3
+
+console.log(str.endsWith("domingo"));
+console.log(str.endsWith("é", 8)); //Define o tamanho da substring
+
+
+
+/* charAt, charCodeAt, length */
+
+str = "abcdefgh"
+
+console.log(str.charAt(2));
+console.log(str.charCodeAt(2));
+console.log(str.length);
