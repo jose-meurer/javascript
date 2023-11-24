@@ -87,10 +87,10 @@
     }
 
     function setSaveLocalStorage() {
-        const arrStorage = arrInstancesTasks.map(task => {
+        const storageArr = arrInstancesTasks.map(task => {
             return task.saveData();
         })
-        localStorage.setItem("tasks", JSON.stringify(arrStorage));
+        localStorage.setItem("tasks", JSON.stringify(storageArr));
     }
 
     // a partir de um array de objetos literais, crie um array contendo instancias de Tasks. 
