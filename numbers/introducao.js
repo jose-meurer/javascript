@@ -37,3 +37,15 @@ console.log(Number.isFinite("321")); //Verifica se é typeof number e se é fini
 
 console.log(isFinite(321));
 console.log(isFinite("321")); //Verifica se o numero é finito
+
+let numberAsString = "3.321";
+
+console.log(isNaN(numberAsString));
+console.log(Number.isNaN(numberAsString));
+
+numberAsString = "a54.23";
+
+console.log(isNaN(numberAsString), parseFloat(numberAsString));
+
+console.log(isNaN(numberAsString)); //Se conseguir converter de string para number, retornará false
+console.log(Number.isNaN(parseFloat(numberAsString))); //Só retorna true se realmente for NaN
