@@ -25,3 +25,15 @@ console.log(numero.toLocaleString("pt-BR", { style: "currency", currency: "BRL" 
 console.log(numero.toLocaleString("en-US", { style: "currency", currency: "USD" }));
 console.log(numero.toLocaleString("pt-PT", { style: "currency", currency: "EUR" }));
 console.log(numero.toLocaleString("ja-JP", { style: "currency", currency: "JPY" }));
+
+console.log(Number.MAX_VALUE); //Propriedades só disponiveis chamando a classe construtora
+console.log(Number.MIN_VALUE);
+
+console.log(Number.isInteger(321));
+console.log(Number.isInteger("321"));
+
+console.log(Number.isFinite(321));
+console.log(Number.isFinite("321")); //Verifica se é typeof number e se é finito
+
+console.log(isFinite(321));
+console.log(isFinite("321")); //Verifica se o numero é finito
