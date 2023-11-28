@@ -30,3 +30,7 @@ console.log(date.valueOf());
 console.log(date.toLocaleString("en-US"));
 console.log(date.toLocaleString());
 console.log(date.toLocaleString("pt-PT", {month: "long", weekday: "long", day: "numeric", year: "numeric"}));
+console.log(date.toLocaleString(undefined, {hour12: true}))
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleString
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/toLocaleDateString
+// https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Intl/DateTimeFormat/DateTimeFormat#options
