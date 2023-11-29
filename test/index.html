@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Caixa container mouse</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: #ccc;
+        height: 100vh;
+        width: 100%;
+      }
+
+      .triangulo {
+        margin: 15px;
+        height: 50px;
+        width: 50px;
+        background-color: black;
+        border-bottom: 10px solid red;
+        border-left: 10px solid blue;
+      }
+
+      .container::before {
+        content: "";
+        left: auto;
+        top: -10px;
+        position: absolute;
+        width: 0;
+        height: 0;
+        border-left: 25px solid transparent;
+        border-right: 25px solid transparent;
+        border-bottom: 25px solid blue;
+        z-index: -1;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>Este é meu index</h1>
+      <div class="triangulo"></div>
+    </div>
+
+    <script>
+      (function () {
+        const divContainer = document.createElement("div");
+        divContainer.style.height = "50px";
+        divContainer.style.width = "150px";
+        divContainer.style.borderRadius = "16px";
+        divContainer.style.backgroundColor = "blue";
+        divContainer.style.position = "absolute";
+        divContainer.style.display = "flex";
+        divContainer.style.justifyContent = "center";
+        divContainer.style.alignItems = "center";
+        divContainer.style.color = "white";
+        divContainer.classList.add("container");
+
+        document.body.appendChild(divContainer);
+
+        document.body.addEventListener("mousemove", (event) => {
+          divContainer.style.left = `${event.pageX + -66}px`;
+          divContainer.style.top = `${event.pageY + 30}px`;
+          divContainer.textContent = event.pageX + " " + event.pageY;
+        });
+      })();
+    </script>
+  </body>
+</html>
