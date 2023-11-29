@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BOM</title>
+  </head>
+  <body>
+    <h1>Browser Object Model</h1>
+
+    <script>
+      /* innerWidth
+            innerHeight
+            outerWidth
+            outerHeigth
+            screenX
+            scrrenY
+        */
+
+      const divContainer = createElement("div", undefined, document.body);
+
+      const arr = [];
+
+      const p1 = createElement("p", "innerWidth: ", divContainer);
+      const p2 = createElement("p", "innerHeight: ", divContainer);
+      const p3 = createElement("p", "outerWidth: ", divContainer);
+      const p4 = createElement("p", "outerHeight: ", divContainer);
+      const p5 = createElement("p", "screenX: ", divContainer);
+      const p6 = createElement("p", "screenY: ", divContainer);
+
+      const pes = document.querySelectorAll("div > p");
+      [...pes].forEach((p) => {
+        arr.push(createElement("span", undefined, p));
+      });
+
+      console.log(arr);
+
+      setInterval(() => {
+        arr[0].textContent = innerWidth;
+        arr[1].textContent = innerHeight;
+        arr[2].textContent = outerWidth;
+        arr[3].textContent = outerHeight;
+        arr[4].textContent = screenX;
+        arr[5].textContent = screenY;
+      }, 10);
+
+      function createElement(element, content, nodeDaddy) {
+        const elem = document.createElement(element);
+        elem.textContent = content;
+        nodeDaddy.append(elem);
+        return elem;
+      }
+    </script>
+  </body>
+</html>
