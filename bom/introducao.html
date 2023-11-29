@@ -19,35 +19,32 @@
 
       const divContainer = createElement("div", undefined, document.body);
 
-      const arr = [];
+      const arrProperties = ["innerWidth", "innerHeight", "outerWidth", "outerHeight", "screenX", "screenY"];
 
-      const p1 = createElement("p", "innerWidth: ", divContainer);
-      const p2 = createElement("p", "innerHeight: ", divContainer);
-      const p3 = createElement("p", "outerWidth: ", divContainer);
-      const p4 = createElement("p", "outerHeight: ", divContainer);
-      const p5 = createElement("p", "screenX: ", divContainer);
-      const p6 = createElement("p", "screenY: ", divContainer);
-
-      const pes = document.querySelectorAll("div > p");
-      [...pes].forEach((p) => {
-        arr.push(createElement("span", undefined, p));
+      arrProperties.forEach((elem) => {
+        const p = createElement("p", `${elem}: `, divContainer);
+        const span = createElement("span", undefined, p);
+        span.setAttribute("jsname", "bomSpan");
       });
 
-      console.log(arr);
+      const spans = document.getElementsByTagName("span");
 
       setInterval(() => {
-        arr[0].textContent = innerWidth;
-        arr[1].textContent = innerHeight;
-        arr[2].textContent = outerWidth;
-        arr[3].textContent = outerHeight;
-        arr[4].textContent = screenX;
-        arr[5].textContent = screenY;
+        const spansFilter = Array.from(spans).filter((span) => {
+          if (span.getAttribute("jsname") === "bomSpan") {
+            return span;
+          }
+        });
+
+        spansFilter.forEach((span, index) => {
+          span.textContent = window[arrProperties[index]];
+        });
       }, 10);
 
-      function createElement(element, content, nodeDaddy) {
+      function createElement(element, content, nodeParent) {
         const elem = document.createElement(element);
         elem.textContent = content;
-        nodeDaddy.append(elem);
+        nodeParent.append(elem);
         return elem;
       }
     </script>
