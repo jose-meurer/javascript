@@ -7,6 +7,8 @@
   </head>
   <body>
     <h1>Browser Object Model</h1>
+    <hr />
+    <a style="color: green; font-size: 2rem" href="history.html">History</a>
 
     <script>
       /* innerWidth
@@ -17,7 +19,8 @@
             scrrenY
         */
 
-      const divContainer = createElement("div", undefined, document.body);
+      const divContainer = document.createElement("div");
+      document.body.firstElementChild.after(divContainer);
 
       const arrProperties = ["innerWidth", "innerHeight", "outerWidth", "outerHeight", "screenX", "screenY"];
 
