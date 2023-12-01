@@ -8,17 +8,19 @@
   <body>
     <h1>Window</h1>
     <button id="btn-confirm">Confirmação</button>
+    <button id="btn-prompt">Prompt</button>
     <button id="btn-print">Print</button>
     <button id="btn-popup">Popup</button>
 
     <script>
       const btnConfirm = document.getElementById("btn-confirm");
+      const btnPrompt = document.getElementById("btn-prompt");
       const btnPrint = document.getElementById("btn-print");
       const btnPopup = document.getElementById("btn-popup");
 
-      btnPopup.addEventListener('click', () => {
-        window.open("introducao.html", "nome-janela", `width = 400, height=400, screenX = ${screen.width - 400}, screenY = 30`)
-      })
+      btnPopup.addEventListener("click", () => {
+        window.open("introducao.html", "nome-janela", `width = 400, height=400, screenX = ${screen.width - 400}, screenY = 30`);
+      });
 
       btnPrint.addEventListener("click", () => {
         window.print();
@@ -27,6 +29,11 @@
       btnConfirm.addEventListener("click", () => {
         let confirmacao = window.confirm("Você tem certeza?");
         window.alert(`Sua resposta: ${confirmacao}`);
+      });
+
+      btnPrompt.addEventListener("click", () => {
+        let idade = window.prompt("Qual sua idade? ", 18);
+        window.alert(`Sua idade é: ${idade}`);
       });
     </script>
   </body>

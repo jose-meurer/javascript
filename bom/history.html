@@ -13,7 +13,7 @@
     <a href="https://www.google.com">Google</a>
     <script>
       document.getElementById("btnBack").addEventListener("click", () => {
-        history.back();
+        history.back(); //Nao pode ser chamado diretamente no listener
       });
       document.getElementById("btnForward").addEventListener("click", () => {
         history.forward();
