@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eventos</title>
+  </head>
+  <body>
+    <h1>Eventos</h1>
+    <textarea id="comentario"></textarea>
+    <a href="">Sair da página</a>
+
+    <img src="https://images.hdqwalls.com/wallpapers/the-hunger-games-ballad-of-songbirds-and-snakes-8k-re.jpg" alt="" />
+
+    <script>
+      window.addEventListener("load", () => {
+        console.log("load");
+      });
+
+      window.addEventListener("DOMContentLoaded", () => {
+        console.log("DOMContentLoaded");
+      });
+
+      window.addEventListener("resize", () => {
+        console.log("resize", innerWidth, innerHeight);
+      });
+
+      window.addEventListener("scroll", () => {
+        console.log("scroll", pageYOffset);
+      });
+
+      window.addEventListener("unload", () => {
+        console.log("unload");
+        window.confirm("Deseja realmente sair do site?");
+      });
+
+      window.addEventListener("beforeunload", () => {
+        console.log("beforeunload");
+        window.confirm("Deseja sair?");
+      });
+
+      window.onbeforeunload = confirmExit;
+      function confirmExit() {
+        if (document.getElementById("comentario").value != "") {
+          return "Deseja realmente sair desta página?";
+        }
+      }
+    </script>
+  </body>
+</html>
