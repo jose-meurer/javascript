@@ -9,6 +9,7 @@
     <h1>Browser Object Model</h1>
     <hr />
     <a style="color: green; font-size: 2rem" href="history.html">History</a>
+    <button id="btn-close">Fechar popup</button>
 
     <script>
       /* innerWidth
@@ -50,6 +51,13 @@
         nodeParent.append(elem);
         return elem;
       }
+
+      const btnClosePopup = document.getElementById("btn-close");
+      console.log(window.opener) //representa o window da pagina que criou o popup, possivel acessar variaveis "var"
+
+      btnClosePopup.addEventListener("click", () => {
+        window.close() //Só funciona se tiver sido aberta com window.open()
+      })
     </script>
   </body>
 </html>
