@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Estilização</title>
+
+    <style>
+      div {
+        padding: 12px;
+        font-size: 22px;
+        background-color: burlywood !important;
+      }
+    </style>
+  </head>
+  <body>
+    <header style="height: 130vh; background-color: blue"></header>
+
+    <div style="background-color: red" class="fx" jsname="test">
+      <h1>Estilização</h1>
+      <p>
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae, nemo in explicabo iste ipsam vel rerum est atque omnis quo repellat ab facilis, cupiditate dolores autem porro quod.
+        Maiores, quidem.
+      </p>
+    </div>
+
+    <script>
+      /* Styles */
+
+      const div = document.querySelector("div");
+      console.log(div.style.background); //Irá terá retorno vazio, pois tenho apenas backgroundColor
+
+      div.style.backgroundColor = "#2fc";
+
+      //Retorna sempre o style de linha
+      console.log(div.style.backgroundColor); //Retorna sempre em rgb()
+
+      /* classList */
+
+      div.classList.add("name1");
+      div.classList.add("name2");
+
+      div.classList.remove("name1");
+
+      div.classList.toggle("name2");
+
+      div.className = "test1"; //Sobreescrever as classes anteriores
+
+      /* getComputedStyles */
+
+      //Retorna todos os styles computados, inclusive os user-agent
+      console.log(window.getComputedStyle(div));
+      console.log(window.getComputedStyle(div).backgroundColor);
+
+      /* Tamanho e posicao no DOM */
+
+      //Em relacao ao document
+      console.log(div.offsetHeight); //Altura do elemento
+      console.log(div.offsetWidth); //Largura do Elemento
+      console.log(div.offsetTop); //Distancia do top
+      console.log(div.offsetLeft); //Distancia do left
+
+      /* Posicao elemento em relacao viewport */
+
+      console.log(div.getBoundingClientRect());
+      /*    top = onde comeca o elemento em relacao a viewPort,
+            bottom = onde termina o elemento em relacao a viewPort */
+    </script>
+  </body>
+</html>
