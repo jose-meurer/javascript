@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      .draggable-element {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        background-color: hsl(240, 100%, 60%);
+        cursor: move;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="object" class="draggable-element"></div>
+
+    <script>
+      // Obtém o elemento que você deseja tornar arrastável
+      let div = document.getElementById("object");
+
+      div.addEventListener("mousedown", function (event) {
+        // Calcula a diferença entre o canto superior esquerdo do elemento e o cursor do mouse
+        let shiftX = event.clientX - div.getBoundingClientRect().left;
+        let shiftY = event.clientY - div.getBoundingClientRect().top;
+
+        div.style.position = "absolute";
+        div.style.zIndex = 1000;
+
+        // Move o div para as coordenadas do cursor do mouse
+        function moveAt(pageX, pageY) {
+          div.style.left = pageX - shiftX + "px";
+          div.style.top = pageY - shiftY + "px";
+        }
+
+        function onMouseMove(event) {
+          moveAt(event.pageX, event.pageY);
+        }
+
+        // Move o div conforme o cursor do mouse se move
+        document.addEventListener("mousemove", onMouseMove);
+
+        window.onmouseout = function () {
+          removeMouseMove();
+          window.onmouseout = null;
+        };
+
+        // Solta o div quando o botão do mouse é liberado
+        div.onmouseup = function () {
+          removeMouseMove();
+          div.onmouseup = null;
+        };
+
+        function removeMouseMove() {
+          document.removeEventListener("mousemove", onMouseMove);
+        }
+      });
+
+      // Impede o comportamento padrão de arrastar e soltar do navegador
+      div.ondragstart = function () {
+        return false;
+      };
+    </script>
+  </body>
+</html>
