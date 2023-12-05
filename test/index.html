@@ -63,8 +63,9 @@
         document.body.appendChild(divContainer);
 
         window.addEventListener("mousemove", (event) => {
-          divContainer.style.left = `${event.pageX - divContainer.offsetWidth / 2.2}px`;
-          divContainer.style.top = `${event.pageY + divContainer.offsetHeight / 1.6}px`;
+          divContainer.style.left = `${event.clientX}px`;
+          divContainer.style.top = `${event.clientY}px`;
+          divContainer.style.transform = "translateY(65%) translateX(-44%)";
           divContainer.textContent = event.pageX + " " + event.pageY;
         });
       })();
