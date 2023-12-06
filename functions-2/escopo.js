@@ -1,3 +1,5 @@
+"use strict"
+
 const str = "global string";
 
 function teste() {
