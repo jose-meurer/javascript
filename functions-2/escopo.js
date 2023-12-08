@@ -1,4 +1,3 @@
-"use strict"
 
 const str = "global string";
 
@@ -19,7 +18,10 @@ const obj = {
 };
 
 obj.teste();
+
 obj.test2();
+
+console.log("\n\n\n");
 
 /*  O this no javascript é dinamico, seu valor é determinado pelo contexto.
     Exemplos: 
@@ -45,16 +47,20 @@ const obj2 = {
 };
 
 function fnTestThis() {
+  "use strict"
   console.log(this); // Esse this será o objeto
 
   function _test() {
-    console.log("declaration: " + this); //Undefined, pois o this é dinamico
+    //Undefined, pois o this é dinamico e estou usando 'use strict'
+    console.log("declaration: "); 
+    console.log(this);
   }
 
   _test();
 
   const _testArrow = () => {
-    console.log("arrow: " + this); //Ainda será o objeto
+    console.log("arrow: "); //Ainda será o objeto
+    console.log(this)
   };
 
   _testArrow();

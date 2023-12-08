@@ -24,4 +24,10 @@ function printValue() {
   console.log(x);
 }
 
+function fn() {
+  let x = 44;
+  printValue();
+}
+
 printValue();
+fn();
