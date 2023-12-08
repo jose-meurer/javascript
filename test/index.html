@@ -6,15 +6,32 @@
     <title>Caixa container mouse</title>
 
     <style>
+      :root {
+        --background: #1f2336;
+        --scrollbar-background: #313852;
+        --text: #f1f1f1;
+        --text-active: #f1f1f180;
+      }
+
       * {
         margin: 0;
         padding: 0;
         box-sizing: border-box;
       }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
-        background-color: #ccc;
+        font-family: "Manrope", sans-serif;
         height: 100vh;
-        width: 100%;
+        display: flex;
+        background-color: var(--background);
+        justify-content: center;
+        align-items: center;
+        gap: 150px;
+        overflow-x: hidden;
       }
 
       .triangulo {
@@ -26,7 +43,7 @@
         border-left: 10px solid blue;
       }
 
-      .container::before {
+      .containerOverview::before {
         content: "";
         left: auto;
         top: -10px;
@@ -38,12 +55,73 @@
         border-bottom: 25px solid blue;
         z-index: -1;
       }
+
+      .container {
+        display: flex;
+        flex-direction: row;
+        gap: 24px;
+        padding: 16px;
+        max-width: 200px;
+        overflow-x: scroll;
+        scroll-snap-type: x mandatory;
+      }
+
+      .card {
+        min-width: 200px;
+        min-height: 200px;
+        color: var(--text);
+        display: flex;
+        font-weight: 600;
+        font-size: 1.5rem;
+        border-radius: 16px;
+        transition: all 0.2s;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        scroll-snap-align: start;
+      }
+
+      .card:nth-child(1) {
+        background-image: linear-gradient(to bottom, #9377f2, #6250d7);
+      }
+
+      .card:nth-child(2) {
+        background-image: linear-gradient(to bottom, #e5866c, #df795d);
+      }
+
+      .card:nth-child(3) {
+        background-image: linear-gradient(to bottom, #5866e4, #4d5ad9);
+      }
+
+      .card:nth-child(4) {
+        background-image: linear-gradient(to bottom, #97bf42, #75aa29);
+      }
+
+      .container::-webkit-scrollbar {
+        height: 10px;
+      }
+
+      .container::-webkit-scrollbar-track {
+        background: var(--scrollbar-background);
+        border-radius: 999px;
+      }
+
+      .container::-webkit-scrollbar-thumb {
+        background: var(--text);
+        border-radius: 999px;
+      }
     </style>
   </head>
   <body>
     <div>
       <h1>Este é meu index</h1>
       <div class="triangulo"></div>
+    </div>
+    <div class="container">
+      <div class="card">HTML</div>
+      <div class="card">CSS</div>
+      <div class="card">JS</div>
+      <div class="card">Python</div>
     </div>
 
     <script>
@@ -58,7 +136,7 @@
         divContainer.style.justifyContent = "center";
         divContainer.style.alignItems = "center";
         divContainer.style.color = "white";
-        divContainer.classList.add("container");
+        divContainer.classList.add("containerOverview");
 
         document.body.appendChild(divContainer);
 
